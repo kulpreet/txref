@@ -1,6 +1,6 @@
 # Confirmed Transaction Reference Codes
 
-https://travis-ci.org/kulpreet/txref.svg?branch=master
+[![Build Status](https://travis-ci.org/kulpreet/txref.svg?branch=master)](https://travis-ci.org/kulpreet/txref)
 
 Porting Jonas Schnelli's reference C implementation to Go
 
