@@ -54,8 +54,14 @@ func init() {
 
 func main() {
 
-	const hrp = "tx"
+	var hrp string
 
+	if opts.NonStandard {
+		hrp = "txtest"
+	} else {
+		hrp = "tx"
+	}
+	
 	if !opts.Encode && !opts.Decode {
 		fmt.Printf("Please choose either encode or decode\n")
 		os.Exit(1)
