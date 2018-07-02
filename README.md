@@ -1,10 +1,12 @@
 # Confirmed Transaction Reference Codes
 
+https://travis-ci.org/kulpreet/txref.svg?branch=master
+
 Porting Jonas Schnelli's reference C implementation to Go
 
 ## Usage
 
-```
+```golang
 import (
     "fmt"
     
@@ -12,19 +14,15 @@ import (
 )
 
 /* ENCODE */
-//buffer should be at least strlen(hrp) + 19 + 1(0 byte)
-var encoded_txref = [32]byte
-const hrp = "tx"; //mainnet
+var encoded_txref = string
+const hrp string = "tx" //mainnet
 
 // now encode for height 100 and pos 100
-encoded_txref, err = txref.Encode(hrp, TXREF_MAGIC_BTC_MAINNET, 100, 100)
+encoded_txref, err := txref.Encode(hrp, txref.Txref_magic_btc_mainnet, 100, 100, false)
 fmt.Printf("Encoded txref is %s\n", encoded_txref)
 
 /* DECODE */
-const pos, height, buflen int = 10, 10, len(encoded_txref)
-hrpbuf [buflen]string
-magic string
-hrpbuf, magic, err = txref.Decode(encoded_txref, height, pos)
+decoded, magic, height, position, err := txref.Decode(encoded_txref)
 ```
 
 ## Install
