@@ -28,3 +28,7 @@ decoded, magic, height, position, err := txref.Decode(encoded_txref)
 ## Install
 
 `go get -u github.com/kulpreet/txref`
+
+## Run tests
+
+`go test ./...`
