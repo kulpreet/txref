@@ -25,6 +25,15 @@ fmt.Printf("Encoded txref is %s\n", encoded_txref)
 decoded, magic, height, position, err := txref.Decode(encoded_txref)
 ```
 
+### CLI Examples
+```bash
+./txref --encode --blockheight 1354001 --position 83 --vout 0 --magic=6 --nonstd
+
+./txref --encode --blockheight 1354001 --position 83 --vout 0 --magic=3
+
+./txref  --decode --txref txtest1:xz35-jzv2-qqqq-qg2u-sft
+```
+
 ## Install
 
 `go get -u github.com/kulpreet/txref`
