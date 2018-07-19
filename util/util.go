@@ -28,13 +28,19 @@ import (
 	"github.com/kulpreet/txref/bech32"
 )
 
-const Txref_magic_btc_mainnet int = 0x03
-const Txref_bech32_hrp_mainnet string = "tx"
+const TxrefMagiBtcMainnet int = 0x03
+const TxrefBech32HrpMainnet string = "tx"
 
-const Txref_magic_btc_testnet int = 0x06
+const TxrefMagicBtcTestnet int = 0x06
 const Txref_bech32_hrp_testnet string = "txtest"
 
-const Txref_len_without_hrp = 15;
+const DataLenMainnet = 8
+const DataLenMainnetExtended = 10
+
+const DataLenTestnet = 11
+const DataLenTestnetExtended = 13
+
+const TxrefLenWithoutHrp = 15;
 
 func Encode(hrp string, magic int, height int, position int, vout int, nonStandard bool) (txref string, error error) {
 	var data []int = make([]int, 13, 13)
@@ -82,7 +88,7 @@ func Encode(hrp string, magic int, height int, position int, vout int, nonStanda
     }
 	
 	if len(hrp) == 0 {
-		hrp = Txref_bech32_hrp_mainnet
+		hrp = TxrefBech32HrpMainnet
 	}
 
 	if !nonStandard {
@@ -101,8 +107,8 @@ func Encode(hrp string, magic int, height int, position int, vout int, nonStanda
 func Decode(txref string) (hrp string, magic int, height int, position int, vout int, err error) {
 
     /* max TXREF_LEN_WITHOUT_HRP (+4 separators) chars are allowed for now */
-    if (len(txref) < Txref_len_without_hrp+4) {
-		var msg string = fmt.Sprintf("max Txref_len_without_hrp (+4 separators) chars are allowed for now, %s %d",
+    if (len(txref) < TxrefLenWithoutHrp+4) {
+		var msg string = fmt.Sprintf("max TxrefLenWithoutHrp (+4 separators) chars are allowed for now, %s %d",
 			txref, len(txref))
 		err = errors.New(msg)
         return
@@ -116,7 +122,7 @@ func Decode(txref string) (hrp string, magic int, height int, position int, vout
 		return
 	}	
 	if len(data) != 11 && len(data) != 13 {
-		err = errors.New("Decoded data is not 8 or 10 characters long")
+		err = errors.New("Decoded data is not 11 or 13 characters long")
 		return
 	}
 
