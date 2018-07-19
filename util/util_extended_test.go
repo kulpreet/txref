@@ -26,16 +26,16 @@ import (
 	. "github.com/kulpreet/txref/util"
 )
 
-func TestEncoding(t *testing.T) {
+func TestExtendedEncoding(t *testing.T) {
 
-	for i, tc := range TestVectors {
+	for i, tc := range ExtendedTestVectors[21:22] {
 		tc := tc // capture the test case variable
 		t.Run("Running test vector", func(t *testing.T) {
 			t.Logf("%d : %s\n", i, tc.EncodedTxref)
 			if tc.EncFail != 3 {
-				t.Logf("Encoding magic: %08b height: %08b and position %08b\n", tc.Magic, tc.Height, tc.Position)
-				txref, err := Encode(tc.Hrp, tc.Magic, tc.Height, tc.Position, 0, tc.NonStd)
-				t.Logf("Encoded to %s\n", txref)
+				t.Logf("Encoding magic: %08b height: %08b, position %08b and vout %08b\n", tc.Magic, tc.Height, tc.Position, tc.Vout)
+				t.Logf("Encoding magic: %d height: %d, position %d and vout %d\n", tc.Magic, tc.Height, tc.Position, tc.Vout)
+				txref, err := Encode(tc.Hrp, tc.Magic, tc.Height, tc.Position, tc.Vout, tc.NonStd)
 				if err != nil {
 					if tc.EncFail == 0 {
 						t.Error(err)
@@ -44,7 +44,8 @@ func TestEncoding(t *testing.T) {
 					}
 				}
 				if tc.EncodedTxref != txref && tc.EncFail == 0 {
-					t.Errorf("%d: %d %d failed to encode to %s", i, tc.Height, tc.Position, tc.EncodedTxref)
+					t.Errorf("%d: %d %d %d failed to encode to %s, instead encoding to %s",
+						i, tc.Height, tc.Position, tc.Vout, tc.EncodedTxref, txref)
 				} else {
 					hrp, decodedMagic, decodedHeight, decodedPosition, decodedVout, err := Decode(txref)
 					if err != nil {
@@ -58,12 +59,12 @@ func TestEncoding(t *testing.T) {
 						decodedMagic != tc.Magic ||
 						decodedHeight != tc.Height ||
 						decodedPosition != tc.Position ||
-						decodedVout != 0 {
-						t.Errorf("%d: %d %d failed to decode to %s from %s\n" +
-							"Decoded hrp: %s, magic: %d height: %d, position: %d",
-							i, tc.Height, tc.Position,
+						decodedVout != tc.Vout {
+						t.Errorf("%d: %d %d %d failed to decode to %s from %s\n" +
+							"Decoded hrp: %s, magic: %d height: %d, position: %d, vout: %d",
+							i, tc.Height, tc.Position, tc.Vout,
 							tc.EncodedTxref, txref,
-							hrp, decodedMagic, decodedHeight, decodedPosition,
+							hrp, decodedMagic, decodedHeight, decodedPosition, decodedVout,
 						)
 					}		
 				}
@@ -80,9 +81,9 @@ func TestEncoding(t *testing.T) {
 					decodedMagic != tc.Magic ||
 					decodedHeight != tc.Height ||
 					decodedPosition != tc.Position ||
-					decodedVout != 0 {
+					decodedVout != tc.Vout {
 					if tc.EncFail == 0 {
-						t.Errorf("%d: %d %d failed to decode to %s from %s", i, tc.Height, tc.Position,
+						t.Errorf("%d: %d %d %d failed to decode to %s from %s", i, tc.Height, tc.Position, tc.Vout,
 							tc.EncodedTxref, tc.EncodedTxref)
 					} else {
 						return

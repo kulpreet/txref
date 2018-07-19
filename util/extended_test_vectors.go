@@ -16,7 +16,7 @@ var ExtendedTestVectors = []ExtendedTestVector{
 	{
         TxrefMagicBtcMainnet,
         TxrefBech32HrpMainnet,
-		"tx1:rqqq-qqqq-qqqu-au7hl",
+		"tx1:rqqq-qqqq-qmhu-qk",
         0,
         0,
 		0,
@@ -26,40 +26,30 @@ var ExtendedTestVectors = []ExtendedTestVector{
 	{
         TxrefMagicBtcMainnet,
         TxrefBech32HrpMainnet,
-        "tx1:rjk0-u5ng-qqq8-lsnk3",
-        466793,
-        2205,
-		0,
+		"tx1:rqqq-qqqq-pqq7-l4fw8",
+        0,
+        0,
+		1,
         0,0,false,
     },
-
+	
     {
         TxrefMagicBtcMainnet,
         TxrefBech32HrpMainnet,
-        "tx1:rjk0-u5n1-rrr0-lsnk3", /* error correct test >rrr0< instead of >qqq8<*/
+        "tx1:rqqq-qqqq-rrr8-l4fw8", /* error correct test >rrr8< instead of >qqq8<*/
         466793,
         2205,
 		0,
         1,0,false,
     },
-	
+		
     {
         TxrefMagicBtcMainnet,
         TxrefBech32HrpMainnet,
-        "tx1:rqqq-qqqq-qqqu-au7hl",
-        0,
-        0,
-		0,
-        0,0,false,
-    },
-	
-    {
-        TxrefMagicBtcMainnet,
-        TxrefBech32HrpMainnet,
-        "tx1:rzqq-qqqq-qqql-4ym2c",
+        "tx1:rzqq-qqqq-pqqa-hdvnq",
         1,
         0,
-		0,
+		1,
         0,0,false,
     },
 	
@@ -76,10 +66,10 @@ var ExtendedTestVectors = []ExtendedTestVector{
     {
         TxrefMagicBtcMainnet,
         TxrefBech32HrpMainnet,
-        "tx1:r7ll-lrar-qqqw-jmhax",
+        "tx1:r7ll-lrar-pqqv-sjqy7",
         2097151, /* last valid block height with current enc/dec version is 0x1FFFFF*/
         1000,
-		0,
+		1,
         0,0,false,
     },
 	
@@ -96,10 +86,10 @@ var ExtendedTestVectors = []ExtendedTestVector{
     {
         TxrefMagicBtcMainnet,
         TxrefBech32HrpMainnet,
-        "tx1:r7ll-llll-qqqn-sr5q8",
+        "tx1:r7ll-llll-pqq3-j2rel",
         2097151, /* last valid block height with current enc/dec version is 0x1FFFFF*/
         8191, /* last valid tx pos is 0x1FFF */
-		0,
+		1,
         0,0,false,
     },
 
@@ -136,20 +126,20 @@ var ExtendedTestVectors = []ExtendedTestVector{
     {
         TxrefMagicBtcMainnet,
         TxrefBech32HrpMainnet,
-        "tx1:r7ll-lrqq-qqqm-m5vjv",
+        "tx1:r7ll-lrqq-pqqe-eamt5",
         2097151, /* last valid block height with current enc/dec version is 0x1FFFFF*/
         0,
-		0,
+		1,
         0,0,false,
     },
 	
     {
         TxrefMagicBtcMainnet,
         TxrefBech32HrpMainnet,
-        "tx1:rqqq-qull-qqq5-ktx95",
+        "tx1:rqqq-qull-pqqk-5z3uv",
         0,
         8191, /* last valid tx pos is 0x1FFF */
-		0,
+		1,
         0,0,false,
     },
 
@@ -186,10 +176,10 @@ var ExtendedTestVectors = []ExtendedTestVector{
     {
         0xB,
         TxrefBech32HrpMainnet,
-        "tx1:t7ll-llll-qqqt-433dq",
+        "tx1:t7ll-llll-pqqf-hcx5c",
         2097151,
         8191,
-		0,
+		1,
         0,0,false, /* ignore encoding */
     },
 
@@ -206,40 +196,40 @@ var ExtendedTestVectors = []ExtendedTestVector{
     {
         TxrefMagicBtcMainnet,
         TxrefBech32HrpMainnet,
-        "tx1:rk63-uvxf-qqqa-8wrdy",
+        "tx1:rk63-uvxf-pqql-9855u",
         467883,
         2355,
-		0,
+		1,
         0,0,false, /* ignore encoding */
     },
 	
     {
         TxrefMagicBtcTestnet,
         TxrefBech32HrpTestnet,
-        "txtest1:xk63-uqvx-fqqq-q5p7-cqx",
+        "txtest1:xk63-uqvx-fqpq-qkrh-0e7",
         467883,
         2355,
-		0,
+		1,
         0,0,true, /* ignore encoding */
     },
 	
     {
         TxrefMagicBtcTestnet,
         TxrefBech32HrpTestnet,
-        "txtest1:xqqq-qqqq-qqqq-qj7d-vzy",
+        "txtest1:xqqq-qqqq-qqll-8962-2gr",
         0,
         0,
-		0,
+		8191,
         0,0,true, /* ignore encoding */
     },
 	
     {
         TxrefMagicBtcTestnet,
         TxrefBech32HrpTestnet,
-        "txtest1:x7ll-llll-llqq-qz4n-9zn",
+        "txtest1:x7ll-llll-llll-8435-rg5",
         0x3FFFFFF,
         0x3FFFF,
-		0,
+		0x1FFF,
         0,0,true, /* ignore encoding */
     },
 }
