@@ -28,11 +28,11 @@ import (
 	"github.com/kulpreet/txref/bech32"
 )
 
-const TxrefMagiBtcMainnet int = 0x03
+const TxrefMagicBtcMainnet int = 0x03
 const TxrefBech32HrpMainnet string = "tx"
 
 const TxrefMagicBtcTestnet int = 0x06
-const Txref_bech32_hrp_testnet string = "txtest"
+const TxrefBech32HrpTestnet string = "txtest"
 
 const DataLenMainnet = 8
 const DataLenMainnetExtended = 10
